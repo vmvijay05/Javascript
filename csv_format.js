@@ -44,7 +44,7 @@ class Register {
 
     writeToCSV(outFile) 
     {
-        console.log("outfile is-> ",outFile);
+       // console.log("outfile is-> ",outFile);
         fs.appendFileSync(outFile, `${this.fullName},${this.mobileNum},${this.official.serialNum},${this.official.emailId},${this.official.password},${this.official.workStatus}\n`);   //node
     
     }
@@ -64,7 +64,7 @@ class Subclass {
     constructor() {
         this.records = [];
     }
-
+    
     getAllDetails() {
         const readline = require('readline-sync');
         let numRecords = parseInt(readline.question("Enter number of records: "));
@@ -77,13 +77,15 @@ class Subclass {
         }
     }
 
-    saveToCSVFile(filename) {
+    saveToCSVFile(filename)
+     {
         fs.writeFileSync(filename, "Full Name,Mobile Number,Serial Number,Email ID,Password,Work Status\n");  //node
         this.records.forEach(record => record.writeToCSV(filename));
         console.log("Data saved to CSV file successfully!");
     }
 
-    loadFromCSVFile(filename) {
+    loadFromCSVFile(filename)
+     {
         if (!fs.existsSync(filename)) {
             console.log("Error opening file for reading!");
             return;
@@ -95,7 +97,8 @@ class Subclass {
         this.records = [];
 
         data.forEach(line => {
-            if (line.trim()) {
+            if (line.trim()) 
+                {
                 let record = new Register();
                 record.readFromCSV(line);
                 this.records.push(record);
