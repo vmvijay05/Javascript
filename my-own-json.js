@@ -17,7 +17,8 @@ class personalInfo extends Register {
         super();
         this.fullName = '';
         this.mobileNum = '';
-        // this.obj1 = new Register();
+        //this.obj1 = new personalInfo();
+        //obj1.push(personalInfo);
     }
 
     getInputDetails() {
@@ -36,20 +37,28 @@ class personalInfo extends Register {
     }
 
     writeFile(filename) {
-        const header = "Serial No,Fullname,Emailid,Password,mobilenumber,workstatus\n";
-        const data = `${this.serialNum},${this.fullName},${this.emailId},${this.password},${this.mobileNum},${this.workStatus}\n`;
+        fs.writeFile(
+            filename, JSON.stringify(this.obj1),
+            err => {
+                if (err) throw err;
 
-        // Check if file exists and has content`
-        if (!fs.existsSync(filename) || fs.statSync(filename).size === 0) {
-            fs.writeFileSync(filename, header + data, 'utf8'); // Write headers + data
-        } else {
-            fs.appendFileSync(filename, data, 'utf8'); // Append only data
-        }
-        console.log(`Data successfully written to ${filename}`);
+                console.log("Done writing");
+            });
+
+const data={
+    SerialNum:this.serialNum,
+    Fullname:this.fullName,
+    EmailId:this.emailId,
+    Password:this.password,
+    Mobilenumber:this.mobileNum,
+    Workstatus:this.Workstatus
+};
+
     }
+
 }
 const obj = new personalInfo();
-const filename = 'myown.csv';
+const filename = 'myown.json';
 
 obj.getInputDetails();
 obj.displayDetails();
