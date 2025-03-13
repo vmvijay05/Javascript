@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- "defer" means the script js file is executed after executing the html and css file -->
+  <script src="./index.js" defer></script> 
+</head>
+
+<body>
+  <div class="container">
+    <form class="formtag">
+      <h1 class="title"> Registration </h1>
+      <label for="fname">User name</label><br>
+      <input type="text" placeholder="Enter Username" id="fname" name="uname" required><br>
+      <label for="lname">Email</label><br>
+      <input type="text" placeholder="Enter Email" id="mailid" name="mailid" required><br>
+      <label for="pw">Password</label><br>
+      <input type="text" placeholder="Enter Password" id="pw" name="pw" required><br>
+      <label for="pw">Confirm Password</label><br>
+      <input type="text" placeholder="Enter Confirm Password" id="cpw" name="cpw" required><br>
+      <input type="submit" id="submit" name="Register">
+      <span>Already a member? Signin</span>
+    </form>
+  </div>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Username Validation</title>
+
+</head>
+<body>
+    <h2>Username Validation</h2>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="validateUsername()">Check</button>
+    <p id="message"></p>
+
+    <script src="script.js"></script>
+</body>
+</html> -->

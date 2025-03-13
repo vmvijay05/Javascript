@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <form id="registerForm">
+        <div class="container">
+            <h1>Register</h1>
+            <hr>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+            <hr>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+            <button type="submit" class="registerbtn">Register</button>
+        </div>
+    </form>
+
+    <h2 id="output"></h2> <!-- This is where we display the response -->
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Stop form from reloading the page
+            getData(); // Call API
+        });
+
+    function getData() {
+        fetch('http://localhost:8000/data')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.message);
+                alert(data.message); // Show response in an alert box
+            })
+            .catch(error => console.error('Fetch Error:', error));
+    }
+</script>
+</body>
+</html>

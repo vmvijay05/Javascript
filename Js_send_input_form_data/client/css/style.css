@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(64, 114, 209);
+}
+
+input {
+    width: 100%;
+    margin: 5px 0px 10px 0px;
+    padding: 6px;
+}
+
+.title {
+    color: rgb(40, 162, 195);
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+}
+
+.Registration {
+    text-align: center;
+    margin: 10px 0px 0px 0px;
+}
+
+.formtag {
+    margin: 65px auto;
+    width: 86%;
+    display: block;
+    padding: 40px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 40%;
+    background-color: white;
+}
+
+#submit {
+    padding: 8px;
+    background-color: rgb(76, 204, 239);
+    border: 1px solid aqua;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: rgb(33, 187, 230);
+}
