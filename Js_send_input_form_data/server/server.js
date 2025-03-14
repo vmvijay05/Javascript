@@ -1,9 +1,9 @@
 const express = require("express");
-const cors = require("cors"); // Allow cross-origin requests
+const cors = require("cors");
 
 const app = express();
-app.use(express.json()); // Parse JSON request body
-app.use(cors()); // Enable CORS
+app.use(express.json());
+app.use(cors());
 
 app.post("/register", (req, res) => {
     const { username, email, password } = req.body;
@@ -19,3 +19,5 @@ app.post("/register", (req, res) => {
 app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
+
+
