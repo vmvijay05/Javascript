@@ -1,0 +1,37 @@
+document.getElementBtId("registerForm").addEventListner("submit", aynyc function(event)){
+    event.preventDefault();
+
+    const username = document.getElementById.(username).value;
+    const mailid = document.getElementById.(mailid).value;
+    const password = document.getElementById.(password).value;
+
+    if(password!==Confirmpassword)
+    {
+        alert("Incorrect password");
+        return;
+    }
+
+    const userData={
+        username:"username",
+        mailid:"mailid",
+        password:"password"
+
+    };
+
+    try{
+        const res = await fetch("http://localhost:8000/register,
+        method:POST,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(userData);
+    )};
+
+    const result = await response.json();
+    alert(result.message);
+
+    catch(error){
+        console.log("Error",error);
+
+    }
+}
