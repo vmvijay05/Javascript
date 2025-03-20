@@ -1,37 +1,47 @@
-document.getElementBtId("registerForm").addEventListner("submit", aynyc function(event)){
-    event.preventDefault();
+const http = require("http");
+const mysql = require("mysql");
+const { parse } = require("querystring");
 
-    const username = document.getElementById.(username).value;
-    const mailid = document.getElementById.(mailid).value;
-    const password = document.getElementById.(password).value;
+const PORT = 3000;
 
-    if(password!==Confirmpassword)
-    {
-        alert("Incorrect password");
-        return;
-    }
+//create database connection
+const db=mysql.createConnection({
+    host:"localhost",
+    username:"root",
+    password:"admin123",
+    database:"registration"
+});
 
-    const userData={
-        username:"username",
-        mailid:"mailid",
-        password:"password"
-
-    };
-
-    try{
-        const res = await fetch("http://localhost:8000/register,
-        method:POST,
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body:JSON.stringify(userData);
-    )};
-
-    const result = await response.json();
-    alert(result.message);
-
-    catch(error){
-        console.log("Error",error);
-
-    }
+db.connect(err=>{
+if(err)
+{
+    console.error("Database connection failed.!");
 }
+else
+{
+    console.log("Database connected successfully");
+}
+
+const createTableQuery=`CREATE TABLE IF NOT EXISTS registration(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+)`;
+
+db.query(createTableQuery,(err)=>{
+if(err)
+{
+    console.error("Table created failed.!");
+}
+else
+{
+    console.log("Tabled created successfully");
+}
+});
+
+});
+
+server=http.createserver((req,res){
+
+})

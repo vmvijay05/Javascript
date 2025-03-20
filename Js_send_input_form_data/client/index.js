@@ -44,6 +44,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         });
 
         const result = await response.json();
+        console.log("Iam Successfully sent a input data!")
         alert(result.message); // Show server response
     }
      catch (error) {

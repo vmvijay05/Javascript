@@ -8,8 +8,8 @@ const PORT = 3000;
 const db = mysql.createConnection({
     host: "localhost",
     user: "root", 
-    password: "",
-    database: "registration_db"
+    password: "Admin@123",
+    database: "Registration"
 });
 
 //err=db.connect()
@@ -22,11 +22,12 @@ db.connect(err => {
     console.log("Connected to MySQL Database");
     
     // Create table if not exists
-    const createTableQuery = `CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
+    const createTableQuery = `CREATE TABLE IF NOT EXISTS person_details(
+           Id INT AUTO_INCREMENT PRIMARY KEY,
+    User_name VARCHAR(100) NOT NULL,
+    Email_id VARCHAR(255) UNIQUE,
+    Mobile_number INT NOT NULL,
+    Psw VARCHAR(100) NOT NULL
     )`;
     
     db.query(createTableQuery, (err) => {
@@ -57,10 +58,10 @@ const server = http.createServer((req, res) => {
         });
 
         req.on("end", () => {
-            const { username, email, password } = JSON.parse(body);
-            
-            const insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-            db.query(insertQuery, [username, email, password], (err, result) => {
+            const { username, email, mobile, password } = JSON.parse(body);
+            console.log(">>>" ,typeof mobile);
+            const insertQuery = "INSERT INTO person_details (User_name, Email_id, Mobile_number,Psw) VALUES (?, ?, ?, ?)";
+            db.query(insertQuery, [username, email, mobile, password], (err, result) => {
                 if (err) {
                     console.error("Error inserting data: ", err);
                     res.writeHead(500, { "Content-Type": "application/json" });

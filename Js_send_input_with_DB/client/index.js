@@ -20,6 +20,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     // const obj1=document.getElementById("fname")
     const username = document.getElementById("fname").value;
     const email = document.getElementById("mailid").value;
+    const mobile = document.getElementById("mobilenumber").value;
     const password = document.getElementById("pw").value;
     const confirmPassword = document.getElementById("cpw").value;
 
@@ -31,6 +32,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const userData = {
         username: username,
         email: email,
+        mobile:mobile,
         password: password
     };
 
