@@ -7,7 +7,7 @@ const PORT = 3000;
 // MySQL database connection
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root", 
+    user: "root",
     password: "Admin@123",
     database: "Registration"
 });
@@ -20,7 +20,7 @@ db.connect(err => {
         return;
     }
     console.log("Connected to MySQL Database");
-    
+
     // Create table if not exists
     const createTableQuery = `CREATE TABLE IF NOT EXISTS person_details(
            Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,7 +29,7 @@ db.connect(err => {
     Mobile_number INT NOT NULL,
     Psw VARCHAR(100) NOT NULL
     )`;
-    
+
     db.query(createTableQuery, (err) => {
         if (err) {
             console.error("Error creating table: ", err);
@@ -59,16 +59,18 @@ const server = http.createServer((req, res) => {
 
         req.on("end", () => {
             const { username, email, mobile, password } = JSON.parse(body);
-            console.log(">>>" ,typeof mobile);
+            //console.log(">>>" ,typeof mobile);
             const insertQuery = "INSERT INTO person_details (User_name, Email_id, Mobile_number,Psw) VALUES (?, ?, ?, ?)";
-            db.query(insertQuery, [username, email, mobile, password], (err, result) => {
+            db.query(insertQuery, [username, email, mobile, password], (err, result) => {  //sends the SQL query to myql
                 if (err) {
                     console.error("Error inserting data: ", err);
                     res.writeHead(500, { "Content-Type": "application/json" });
                     return res.end(JSON.stringify({ message: "Registration failed!" }));
                 }
+                else{
                 res.writeHead(200, { "Content-Type": "application/json" });
                 res.end(JSON.stringify({ message: "Registration successful!" }));
+                }
             });
         });
     } else {
