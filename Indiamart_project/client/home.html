@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-commerce Page</title>
+    <link rel="stylesheet" href="./css/home.css">
+    <script src="./Js/login.js"></script> 
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="indiamart-parent">
+        <div class="container">
+            <div class="header-parent">
+
+                <div class="logosection">
+                    <img src="./images/OIP-removebg-preview.png" alt="indiamart-logo">
+                    <h1>Indiamart</h1>
+                </div>
+
+                <div class="search-field">
+                    <input type="search" placeholder="Search products...">
+                    <button>Search</button>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Product Section -->
+    <section class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Product 1">
+            <h3>Product 1</h3>
+            <p class="price">$19.99</p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Product 2">
+            <h3>Product 2</h3>
+            <p class="price">$29.99</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Product 3">
+            <h3>Product 3</h3>
+            <p class="price">$39.99</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ShopLogo. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -17,7 +17,7 @@ app.use(cors({
 }));
 
 app.use(session({
-    secret: 'ABCxyz',
+    secret: 'ABCxyz12345@',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
@@ -58,16 +58,16 @@ app.post('/mobile', (req, res) => {
             console.error("Error executing query:", err);
             res.status(500).json({ message: "Database query failed", error: err });
         } else {
-            // Render res.html after successful insertion
-            res.sendFile(path.join(__dirname, 'view','res.html'));
+            // Render home.html after successful insertion
+            res.sendFile(path.join(__dirname, '../client','home.html'));
         }
     });
 });
 
-// Handle GET request to /res.html
-app.get('/res', (req, res) => {
+// Handle GET request to /home.html
+app.get('/home', (req, res) => {
     if (req.session.mobile) {
-        res.sendFile(path.join(__dirname, 'view' ,'res.html'));
+        res.sendFile(path.join(__dirname, '../client' ,'home.html'));
     } else {
         res.redirect('/');
     }
@@ -75,14 +75,26 @@ app.get('/res', (req, res) => {
 
 // Logout Route
 app.post('/logout', (req, res) => {
-    req.session.destroy(err => {
+    res.clearCookie('sessionId'); // Clear session cookie if used
+    req.session.destroy(err => {  
         if (err) {
-            return res.status(500).json({ message: 'Logout failed' });
+            return res.status(500).json({ success: false, message: "Logout failed" });
         }
-        res.clearCookie('connect.sid');
-        res.status(200).json({ message: 'Logged out successfully' });
+        res.json({ success: true, message: "Logged out successfully" });
     });
 });
+
+
+// app.post('/logout', (req, res) => {
+//     req.session.destroy(err => {
+//         if (err) {
+//             return res.status(500).json({ message: 'Logout failed' });
+//         }
+//         res.clearCookie('connect.sid');
+//         res.status(200).json({ message: 'Logged out successfully' });
+
+//     });
+// });
 
 app.listen(8000, () => console.log('Server running on port 8000'));
 
