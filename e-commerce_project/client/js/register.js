@@ -1,7 +1,6 @@
-document.getElementById("registerForm").addEventListener("submit", async function(event) {
+document.getElementById("registerForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // const obj1=document.getElementById("fname")
     const username = document.getElementById("fname").value;
     const email = document.getElementById("mailid").value;
     const mobile = document.getElementById("mobilenumber").value;
@@ -16,12 +15,12 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const userData = {
         username: username,
         email: email,
-        mobile:mobile,
+        mobile: mobile,
         password: password
     };
 
     try {
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("http://localhost:8000/details", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -29,13 +28,18 @@ document.getElementById("registerForm").addEventListener("submit", async functio
             body: JSON.stringify(userData)
         });
 
-        const result = await response.json();
-        alert(result.message); // Show server response
-    }
-     catch (error) {
+        if (response.status === 200) {
+            const result = await response.json();
+            alert(result.message);
+            // ✅ Redirect to login page
+            window.location.href = "../login.html";
+        } else {
+            const errorData = await response.json();
+            alert(errorData.message || "Registration failed.");
+        }
+
+    } catch (error) {
         console.error("Error:", error);
         alert("Something went wrong!");
     }
-}
-
-);
+});

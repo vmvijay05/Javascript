@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/register.css">
+  <link rel="icon" type="image/x-icon" href="./images/sign-form.png">
+  <!-- "defer" means the script js file is executed after executing the html and css file -->
+  <script src="./js/register.js" defer></script> 
+</head>
+ 
+<body>
+  <div class="container">
+    <form class="formtag" id="registerForm">
+      <h1 class="title"> Registration </h1>
+      <label for="fname">User name</label><br>
+      <input type="text" placeholder="Enter Username" id="fname" name="uname" required><br>
+      <label for="emailid">Email</label><br>
+      <input type="text" placeholder="Enter Email" id="mailid" name="mailid" required><br>
+      <label for="mobile">Mobile number</label><br>
+      <input type="text" placeholder="Enter Mobile number" id="mobilenumber" name="mobile" required><br>
+      <label for="pw">Password</label><br>
+      <input type="text" placeholder="Enter Password" id="pw" name="pw" required><br>
+      <label for="pw">Confirm Password</label><br>
+      <input type="text" placeholder="Enter Confirm Password" id="cpw" name="cpw" required><br>
+      <input type="submit" id="submit" name="Register">
+      <span>Already a member? <a href="./login.html" target="_blank">SignIn</a></span>
+    </form>
+  </div>
+</body>
+</html>
