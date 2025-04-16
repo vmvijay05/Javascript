@@ -1,26 +1,34 @@
-const express = require("express");
-const mysql = require("mysql");
-const cors = require("cors");
+// server.js
+const express = require('express');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const session = require('express-session');
+const path = require('path');
 
 const app = express();
 const PORT = 8000;
 
-// Middleware
+app.use(bodyParser.json());
 app.use(cors({
     origin: 'http://127.0.0.1:5500',
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type'],
+    credentials: true
 }));
 
-app.use(express.json()); // Parses incoming JSON data
+app.use(session({
+    secret: 'ABCxyz12345@',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
 
-
-// MySQL database connection
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "Admin@123",
-    database: "ecommerce"
+    database: "Indiamart"
 });
 
 db.connect(err => {
@@ -31,11 +39,11 @@ db.connect(err => {
     console.log("Connected to MySQL Database");
 
     const createTableQuery = `CREATE TABLE IF NOT EXISTS registration(
-        ID int not null primary key UNIQUE,
-    Username varchar(255) not null,
-    Emailid varchar(255) not null UNIQUE,
-    Mobilenumber varchar(20) not null,
-    Pin varchar(50) not null
+        ID int AUTO_INCREMENT PRIMARY KEY,
+        Username varchar(255) not null,
+        Emailid varchar(255) not null UNIQUE,
+        Mobilenumber varchar(20) not null,
+        Pin varchar(50) not null
     )`;
 
     db.query(createTableQuery, (err) => {
@@ -47,13 +55,13 @@ db.connect(err => {
     });
 });
 
-// POST route for data
+// POST /register
 app.post("/details", (req, res) => {
     const { username, email, mobile, password } = req.body;
 
     const insertQuery = `
         INSERT INTO registration (Username, Emailid, Mobilenumber, Pin)
-        VALUES (?, ?, ?, ?) `;
+        VALUES (?, ?, ?, ?)`;
 
     db.query(insertQuery, [username, email, mobile, password], (err, result) => {
         if (err) {
@@ -64,12 +72,48 @@ app.post("/details", (req, res) => {
     });
 });
 
-// Fallback route for unknown endpoints
-app.use((req, res) => {
-    res.status(404).send("404 Not Found");
+// POST /login
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    const query = `SELECT * FROM registration WHERE Emailid = ? AND Pin = ?`;
+
+    db.query(query, [email, password], (err, results) => {
+        if (err) {
+            console.error("Login error:", err);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+
+        if (results.length > 0) {
+            req.session.email = email; // Store user email in session
+            res.status(200).json({ message: "Login successful" });
+        } else {
+            res.status(401).json({ message: "Invalid email or password" });
+        }
+    });
+});
+
+// GET /check-session
+app.get('/check-session', (req, res) => {
+    if (req.session.email) {
+        res.status(200).json({ loggedIn: true });
+    } else {
+        res.status(401).json({ loggedIn: false });
+    }
+});
+
+// POST /logout
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: "Logout failed" });
+        }
+        res.clearCookie('connect.sid');
+        res.json({ message: "Logged out successfully" });
+    });
 });
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running at 8000`);
+    console.log(`Server running on port ${PORT}`);
 });

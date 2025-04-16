@@ -10,6 +10,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             headers: {
                 "Content-Type": "application/json"
             },
+            credentials: "include",
             body: JSON.stringify({ email, password })
         });
 
@@ -17,8 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (response.status === 200) {
             alert("Login successful!");
-            // Redirect to dashboard or home page
-            window.location.href = "home.html";
+            window.location.href = "../products.html";
         } else {
             alert(result.message);
         }

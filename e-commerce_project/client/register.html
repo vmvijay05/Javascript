@@ -28,5 +28,23 @@
       <span>Already a member? <a href="./login.html" target="_blank">SignIn</a></span>
     </form>
   </div>
+  <script>
+    window.onload = async () => {
+        try {
+            const res = await fetch('http://localhost:8000/check-session', {
+                credentials: 'include'
+            });
+            const data = await res.json();
+    
+            if (!data.loggedIn) {
+                window.location.href = "../login.html";
+            }
+        } catch (error) {
+            console.error("Session check failed", error);
+            window.location.href = "../login.html";
+        }
+    }
+    </script>
+    
 </body>
 </html>

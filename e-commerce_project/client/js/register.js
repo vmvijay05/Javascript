@@ -13,10 +13,10 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     }
 
     const userData = {
-        username: username,
-        email: email,
-        mobile: mobile,
-        password: password
+        username,
+        email,
+        mobile,
+        password
     };
 
     try {
@@ -31,7 +31,6 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         if (response.status === 200) {
             const result = await response.json();
             alert(result.message);
-            // ✅ Redirect to login page
             window.location.href = "../login.html";
         } else {
             const errorData = await response.json();
