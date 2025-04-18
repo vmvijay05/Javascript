@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",       
-  password: "Admin@123",        
-  database: "ecommerce" 
+  user: "root",
+  password: "Admin@123",
+  database: "ecommerce"
 });
 
 db.connect((err) => {
@@ -39,18 +39,18 @@ app.get("/get-products", (req, res) => {
 });
 
 // CREATE new product
-app.post('/create-product', async (req, res) => {
+app.post('/create-product', (req, res) => {
   const { product_name, description, image, price, stock } = req.body;
 
-  const query = 'INSERT INTO createproducts (product_name, description, image, price, stock) VALUES (?, ?, ?, ?, ?)';
-
-  try {
-    await db.query(query, [product_name, description, image, price, stock]);
-    res.status(200).json({ message: 'Product created successfully' });
-  } catch (err) {
-    console.error('Error inserting product:', err);
-    res.status(500).json({ message: 'Server error' });
-  }
+  const query = 'INSERT INTO createproducts (product_name, product_description, image, price, stock) VALUES (?, ?, ?, ?, ?)';
+  db.query(query, [product_name, description, image, price, stock], (err, result) => {
+    if (err) {
+      console.error('Error inserting product:', err);
+      res.status(500).json({ message: 'Server error' });
+    } else {
+      res.status(200).json({ message: 'Product created successfully', insertId: result.insertId });
+    }
+  });
 });
 
 app.listen(port, () => {

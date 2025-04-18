@@ -7,7 +7,7 @@ document.getElementById("closePopup").addEventListener("click", () => {
 });
 
 document.getElementById("createProductBtn").addEventListener("click", async () => {
-  const product_id = document.getElementById("product_id").value;
+  // const product_id = document.getElementById("product_id").value;
   const product_name = document.getElementById("product_name").value;
   const description = document.getElementById("description").value;
   const image = document.getElementById("image").value;
