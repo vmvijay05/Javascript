@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="./css/admin.css">
+  <link rel="icon" type="image/x-icon" href="./images/admin.png">
+  <script src="./js/admin.js" defer></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#" id="productsLink">Products</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>All Products</h1>
+      <button id="createBtn">Create New Product</button>
+    </div>
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody id="productBody">
+        <!-- Products will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Popup Form -->
+  <div class="popup" id="productPopup">
+    <div class="popup-content">
+      <span class="closeBtn" id="closePopup">&times;</span>
+      <h2>Add Product</h2>
+      <input type="text" id="product_name" placeholder="Product Name">
+      <input type="text" id="description" placeholder="Description">
+      <input type="text" id="image" placeholder="Image URL">
+      <input type="text" id="price" placeholder="Price">
+      <input type="text" id="stock" placeholder="Stock">
+      <button id="createProductBtn">Create</button>
+    </div>
+  </div>
+</body>
+
+</html>
