@@ -5,7 +5,7 @@
   "main": "admin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon admin.js -L"
+    "start": "nodemon server/admin.js -L"
   },
   "keywords": [],
   "author": "",

@@ -17,7 +17,7 @@ const db = mysql.createConnection({
   database: "ecommerce"
 });
 
-db.connect((err) => {
+db.connect(err => {
   if (err) {
     console.error("Database connection failed:", err);
   } else {
@@ -25,32 +25,49 @@ db.connect((err) => {
   }
 });
 
-// GET all products
+// GET all products (alias columns to lowercase keys)
 app.get("/get-products", (req, res) => {
-  const sql = "SELECT * FROM createproducts";
-  db.query(sql, (err, result) => {
+  const sql = `
+    SELECT
+      product_ID       AS product_id,
+      product_name     AS product_name,
+      product_description AS description,
+      image            AS image,
+      price            AS price,
+      stock            AS stock
+    FROM createproducts
+  `;
+  db.query(sql, (err, rows) => {
     if (err) {
       console.error("Failed to get products:", err);
-      res.status(500).json({ message: "Failed to get products" });
-    } else {
-      res.json(result);
+      return res.status(500).json({ message: "Failed to get products" });
     }
+    res.json(rows);
   });
 });
 
 // CREATE new product
-app.post('/create-product', (req, res) => {
+app.post("/create-product", (req, res) => {
   const { product_name, description, image, price, stock } = req.body;
 
-  const query = 'INSERT INTO createproducts (product_name, product_description, image, price, stock) VALUES (?, ?, ?, ?, ?)';
-  db.query(query, [product_name, description, image, price, stock], (err, result) => {
-    if (err) {
-      console.error('Error inserting product:', err);
-      res.status(500).json({ message: 'Server error' });
-    } else {
-      res.status(200).json({ message: 'Product created successfully', insertId: result.insertId });
+  const query = `
+    INSERT INTO createproducts
+      (product_name, product_description, image, price, stock)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+  db.query(
+    query,
+    [product_name, description, image, price, stock],
+    (err, result) => {
+      if (err) {
+        console.error("Error inserting product:", err);
+        return res.status(500).json({ message: "Server error" });
+      }
+      res
+        .status(200)
+        .json({ message: "Product created successfully", insertId: result.insertId });
     }
-  });
+  );
 });
 
 app.listen(port, () => {
