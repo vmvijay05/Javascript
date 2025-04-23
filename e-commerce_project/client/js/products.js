@@ -1,5 +1,5 @@
 // When DOM is ready, fetch and render products
-document.addEventListener("DOMContentLoaded", fetchProducts);
+document.addEventListener("DOMContentLoaded", vijay);
 
 async function fetchProducts() {
   try {
@@ -27,3 +27,4 @@ async function fetchProducts() {
     console.error("Failed to load products:", err);
   }
 }
+

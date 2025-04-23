@@ -25,7 +25,7 @@ db.connect(err => {
   }
 });
 
-// GET all products (alias columns to lowercase keys)
+// GET all products
 app.get("/get-products", (req, res) => {
   const sql = `
     SELECT

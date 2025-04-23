@@ -44,6 +44,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  table-layout: fixed;
 }
 
 .header {
@@ -80,6 +81,8 @@ table {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
+  word-wrap: break-word;
+  vertical-align: top;
 }
 
 #productTable th {
@@ -89,7 +92,11 @@ table {
 
 #productTable td img {
   width: 60px;
-  height: 60px;
+  /* height: 60px; */
+  max-width: 60px;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 .popup {

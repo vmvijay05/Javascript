@@ -8,11 +8,11 @@ document.getElementById("closePopup").addEventListener("click", () => {
 
 // Submit new product
 document.getElementById("createProductBtn").addEventListener("click", async () => {
-  const product_name        = document.getElementById("product_name").value;
-  const description         = document.getElementById("description").value;
-  const image               = document.getElementById("image").value;
-  const price               = document.getElementById("price").value;
-  const stock               = document.getElementById("stock").value;
+  const product_name = document.getElementById("product_name").value;
+  const description = document.getElementById("description").value;
+  const image = document.getElementById("image").value;
+  const price = document.getElementById("price").value;
+  const stock = document.getElementById("stock").value;
 
   const productData = { product_name, description, image, price, stock };
 
@@ -48,10 +48,11 @@ async function fetchProducts() {
 
     // latest on top
     products.reverse().forEach(product => {
+      debugger
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${product.product_id}</td>
-        <td>${product.product_name}</td>
+        <td>${product.product_name}</td>.
         <td>${product.description}</td>
         <td><img src="${product.image}" alt="product" style="width:60px;height:60px;"></td>
         <td>${product.price}</td>
