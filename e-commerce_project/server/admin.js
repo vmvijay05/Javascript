@@ -70,6 +70,26 @@ app.post("/create-product", (req, res) => {
   );
 });
 
+// ADD to cart
+app.post("/add-to-cart", (req, res) => {
+  const { product_id } = req.body;
+
+  // Simulate user ID (in real use case, get it from session or token)
+  const user_id = 1;
+
+  const sql = `
+    INSERT INTO carttable (user_id, product_id)
+    VALUES (?, ?)
+  `;
+  db.query(sql, [user_id, product_id], (err, result) => {
+    if (err) {
+      console.error("Failed to add to cart:", err);
+      return res.status(500).json({ message: "Failed to add to cart" });
+    }
+    res.json({ message: "Product added to cart successfully" });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
