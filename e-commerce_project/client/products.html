@@ -9,15 +9,30 @@
 </head>
 <body>
 
-  <div class="header-parent">
-    <nav>
-      <h1>Welcome to Our Store</h1>
-      <a href="./cart.html"> Cart</a>
+  <header class="header-parent">
+    <nav class="nav-bar">
+      <div class="nav-left">
+        <img src="./images/logo.png" alt="Logo" class="logo">
+      </div>
+      <div class="nav-center">
+        <h1>Welcome to Our Store</h1>
+      </div>
+      <div class="nav-right">
+        <a href="./cart.html">
+          <img src="./images/add-to-cart.png" alt="Add-to-cart-button" class="cart-icon">
+        </a>
+      </div>
     </nav>
-  </div>
+  </header>
 
   <div class="container">
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search products...">
+    </div>
+
     <section class="products"></section>
+
   </div>
 
   <footer>
@@ -26,37 +41,3 @@
 
 </body>
 </html>
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Products Page</title>
-  <link rel="stylesheet" href="./css/products.css">
-  <script src="./js/products.js" defer></script>
-</head>
-<body>
-
-  <div class="header-parent">
-    <nav>
-      <h1>Welcome to Our Store</h1>
-    </nav>
-  </div>
-
-  <div class="container">
-    <section class="products">
-      
-    </section>
-  </div>
-
-  <footer>
-    &copy; 2025 @vijay
-  </footer>
-
-</body>
-</html>  -->
