@@ -2,42 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Products Page</title>
-  <link rel="stylesheet" href="./css/products.css" />
-  <script src="./js/products.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Page</title>
+  <link rel="stylesheet" href="./css/products.css"/>
+  <script src="./js/products.js"></script>
+
 </head>
 <body>
-
-  <header class="header-parent">
-    <nav class="nav-bar">
-      <div class="nav-left">
-        <img src="./images/logo.png" alt="Logo" class="logo">
-      </div>
-      <div class="nav-center">
-        <h1>Welcome to Our Store</h1>
-      </div>
-      <div class="nav-right">
-        <a href="./cart.html">
-          <img src="./images/add-to-cart.png" alt="Add-to-cart-button" class="cart-icon">
-        </a>
-      </div>
-    </nav>
-  </header>
-
   <div class="container">
 
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search products...">
-    </div>
+    <!-- Sidebar Filters -->
+    <aside class="sidebar">
+      <div class="filter-section">
+        <div class="filter-header">
+          <h3>PRICE</h3>
+          <span id="clearBtn" class="clear-btn">CLEAR</span>
+        </div>
 
-    <section class="products"></section>
+        <div class="price-slider">
+          <input type="range" id="minRange" min="0" max="50000" step="100" value="0" />
+          <input type="range" id="maxRange" min="0" max="50000" step="100" value="50000" />
+        </div>
+
+        <div class="range-values">
+          <select id="minDropdown">
+            <option value="0">Min</option>
+            <option value="100">₹100</option>
+            <option value="10">₹10</option>
+            <option value="15">₹15</option>
+            <option value="20">₹20</option>
+          </select>
+          <span>to</span>
+          <select id="maxDropdown">
+            <option value="300">₹300</option>
+            <option value="40">₹40</option>
+            <option value="30">₹30</option>
+            <option value="20">₹20</option>
+            <option value="10">₹10</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." />
+      </div>
+      <div class="products"></div>
+    </main>
 
   </div>
-
-  <footer>
-    &copy; 2025 @vijay
-  </footer>
 
 </body>
 </html>
